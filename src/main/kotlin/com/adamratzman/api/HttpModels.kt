@@ -11,14 +11,15 @@ data class Response<out T>(val status: QueryStatus, val latency_ms: Int, val ite
                            val previous: String? = null, val offset: Int = 0, val total: Int, val country: String? = null)
 
 enum class QueryStatus {
-    OKAY, UNAVAILABLE, SLOW, NA;
+    GOOD, OKAY, UNAVAILABLE, SLOW, NA;
 
     override fun toString() = name.lowercase()
 
     companion object {
         fun fromLatency(latencyInMs: Long): QueryStatus {
             return if (latencyInMs == -1L) NA
-            else if (latencyInMs < 100) OKAY
+            else if (latencyInMs < 400) GOOD
+            else if (latencyInMs < 800) OKAY
             else SLOW
         }
     }

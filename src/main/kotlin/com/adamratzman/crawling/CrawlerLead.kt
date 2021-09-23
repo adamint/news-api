@@ -35,9 +35,13 @@ class CrawlerLead {
 
         executor.scheduleWithFixedDelay({
             runBlocking {
-                updateSnippets()
+                try {
+                    updateSnippets()
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
             }
-        }, 0, 5, MINUTES)
+        }, 0, 2, MINUTES)
     }
 }
 
