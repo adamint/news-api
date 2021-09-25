@@ -1,7 +1,9 @@
 package com.adamratzman.api
 
 import io.ktor.application.install
+import io.ktor.features.CORS
 import io.ktor.features.ContentNegotiation
+import io.ktor.http.HttpMethod
 import io.ktor.routing.routing
 import io.ktor.serialization.json
 import io.ktor.server.cio.CIO
@@ -19,6 +21,13 @@ class NewsHttpApi {
                     isLenient = true
                 })
             }
+
+            install(CORS) {
+                anyHost()
+                method(HttpMethod.Options)
+                method(HttpMethod.Get)
+            }
+
 
             routing {
                 informationRoutes()

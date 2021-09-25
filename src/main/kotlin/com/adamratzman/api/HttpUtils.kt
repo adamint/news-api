@@ -50,7 +50,7 @@ fun PipelineContext<Unit, ApplicationCall>.getCategories(): List<String> {
 
 fun PipelineContext<Unit, ApplicationCall>.getSources(): List<NewsSourceEnum> {
     return call.request.queryParameters["sources"]?.split(",")
-        ?.mapNotNull { id -> NewsSourceEnum.values().firstOrNull { it._id == id } } ?: listOf()
+        ?.mapNotNull { id -> NewsSourceEnum.values().firstOrNull { it._id == id.removePrefix("source_") } } ?: listOf()
 }
 
 fun PipelineContext<Unit, ApplicationCall>.getExcludedSources(): List<NewsSourceEnum> {

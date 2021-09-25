@@ -41,7 +41,7 @@ class CrawlerLead {
                     e.printStackTrace()
                 }
             }
-        }, 0, 2, MINUTES)
+        }, 5, 5, MINUTES)
     }
 }
 
